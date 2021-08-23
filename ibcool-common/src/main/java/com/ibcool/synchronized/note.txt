@@ -1,0 +1,23 @@
+多线程笔记
+
+synchronized:
+
+
+
+
+中断：
+    首先线程不应该由其他线程中断、停止，因该有自己决定；
+    常用的中断方式：volatile、AtomicBoolean，以及Thread自带的Api，Thread的interrupted（返回当前中断状态）
+
+线程唤醒机制：
+    wait 和 notify
+        1. 必须在synchronized中
+        2. 先wait再notify
+
+    Condition的 await 和 signal
+        1. 必须在Lock中使用
+        2. 先await再signal
+
+    LockSupport.park 和 LockSupport.onPark(Thread)
+        1. 无须在任何锁中使用
+        2. 不需要先等待再唤醒，打破了以上两种机制
